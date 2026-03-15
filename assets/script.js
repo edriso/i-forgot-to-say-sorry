@@ -4,6 +4,14 @@ const textarea = document.querySelector('textarea');
 const apologyCard = document.getElementById('apologyCard');
 const stickerPicker = document.querySelector('.sticker-picker');
 
+// --- Editable Title (plain text only) ---
+
+document.querySelector('header h1').addEventListener('paste', (e) => {
+  e.preventDefault();
+  const text = e.clipboardData.getData('text/plain');
+  document.execCommand('insertText', false, text);
+});
+
 // --- Stickers ---
 
 document.querySelector('.sticker-options').addEventListener('click', (e) => {
@@ -83,27 +91,33 @@ generateBtn.addEventListener('click', async () => {
   }
 
   // Hide UI elements for clean capture
+  const heading = document.querySelector('header h1');
   generateBtn.disabled = true;
   generateBtn.style.display = 'none';
   stickerPicker.style.display = 'none';
   textarea.style.resize = 'none';
+  heading.style.borderBottom = 'none';
   const deleteBtns = document.querySelectorAll('.sticker-delete');
   deleteBtns.forEach(btn => btn.style.display = 'none');
 
-  const image = await htmlToImage.toPng(document.body);
-  const a = document.createElement('a');
-  a.href = image;
-  a.download = 'apology.png';
-  a.click();
-  a.remove();
+  try {
+    const image = await htmlToImage.toPng(document.body);
+    const a = document.createElement('a');
+    a.href = image;
+    a.download = 'apology.png';
+    a.click();
+    a.remove();
+    alert('Apology image generated and downloaded!');
+  } catch {
+    alert('Failed to generate image. Please try again.');
+  }
 
   // Restore UI
   generateBtn.disabled = false;
   generateBtn.style.display = 'inline-block';
   stickerPicker.style.display = '';
   textarea.style.resize = 'auto';
+  heading.style.borderBottom = '';
   deleteBtns.forEach(btn => btn.style.display = '');
   textarea.focus();
-
-  alert('Apology image generated and downloaded!');
 });
