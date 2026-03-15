@@ -34,6 +34,18 @@ header {
   font-weight: bold;
 }
 
+header h1 {
+  cursor: text;
+  border-bottom: 0.125rem dashed transparent;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+header h1:hover,
+header h1:focus {
+  border-bottom-color: var(--border-color);
+}
+
 /* Main content area */
 .container {
   background-color: var(--secondary-color);
