@@ -44,6 +44,13 @@ header {
   max-width: fit-content;
 }
 
+/* Apology card - the capture area */
+.apology-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
 /* Text area for input - Mobile first */
 textarea {
   display: block;
@@ -57,6 +64,82 @@ textarea {
   border-radius: 0.3125rem;
   font-size: 0.9rem;
   color: var(--text-color);
+}
+
+/* Sticker picker */
+.sticker-picker {
+  margin-top: 1rem;
+}
+
+.sticker-label {
+  font-size: 0.85rem;
+  color: var(--text-color);
+  margin-bottom: 0.4rem;
+}
+
+.sticker-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  justify-content: center;
+}
+
+.sticker-option {
+  font-size: 1.5rem;
+  background: none;
+  border: 0.125rem solid transparent;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  transition: border-color 0.2s, transform 0.15s;
+  line-height: 1;
+}
+
+.sticker-option:hover {
+  border-color: var(--border-color);
+  transform: scale(1.15);
+}
+
+/* Placed stickers */
+.sticker {
+  position: absolute;
+  font-size: 2rem;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+  z-index: 10;
+  line-height: 1;
+  transition: transform 0.1s;
+}
+
+.sticker:active {
+  cursor: grabbing;
+  transform: scale(1.2);
+}
+
+.sticker .sticker-delete {
+  display: none;
+  position: absolute;
+  top: -0.5rem;
+  right: -0.5rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  background: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  z-index: 11;
+}
+
+.sticker:hover .sticker-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Generate button */
